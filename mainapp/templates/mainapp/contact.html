@@ -1,18 +1,14 @@
 {% extends 'mainapp/base.html' %}
+{% load static %}
+
 {% block menu %}
-<div class="hero">
-    <div class="header clearfix">
-        <a href="/" class="logo"></a>
-        <ul class="menu">
-            <li><a href="/">домой</a></li>
-            <li><a href="/products/">продукты</a></li>
-            <li><a href="/contact/" class="active">контакты</a></li>
-        </ul>
-        <a href="#" class="search"></a>
-        <a href="#" class="basket"></a>
+    <div class="hero">
+        <div class="header clearfix">
+            {% include "mainapp/includes/inc_main_menu.html" %}
+		</div>
+        </div>
+        <h1>наши контакты</h1>
     </div>
-    <h1>наши контакты</h1>
-</div>
 {% endblock %}
 
 {% block content %}
