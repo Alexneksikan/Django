@@ -88,7 +88,10 @@ html, body {
 	position: absolute;
 	top: 63px;
 	left: 1210px;
-	size: 50%;
+	color: #555;
+	padding-left: 27px;
+	background-repeat: no-repeat;
+	font-weight: bold;
 }
 
 .clearfix:after {
