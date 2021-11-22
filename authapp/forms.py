@@ -2,7 +2,7 @@ import hashlib
 
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
 from django import forms
-from authapp.models import ShopUser
+from authapp.models import ShopUser, ShopUserProfile
 from datetime import datetime
 from django.conf import settings
 import pytz
@@ -69,3 +69,16 @@ class ShopUserEditForm(UserChangeForm):
         if data < 18:
             raise forms.ValidationError('Слишком молод!')
         return data
+
+
+class ShopUserProfileEditForm(forms.ModelForm):
+
+    class Meta:
+        model = ShopUserProfile
+        exclude = ('user',)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'
+            field.help_text = ''
