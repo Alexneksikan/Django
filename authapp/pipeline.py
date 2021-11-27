@@ -2,7 +2,7 @@ from datetime import datetime
 from social_core.exceptions import AuthForbidden
 
 import requests
-
+from django.conf import settings
 from authapp.models import ShopUserProfile
 
 
@@ -12,7 +12,7 @@ def save_user_profile(backend, user, response, *args, **kwargs):
 
     url_method = 'https://api.vk.com/method/'
     access_token = response.get('access_token')
-    fields = ','.join(['bdate', 'sex', 'about'])
+    fields = ','.join(['bdate', 'sex', 'about', 'photo_max_orig'])
 
     api_url = f'{url_method}users.get?fields={fields}&access_token={access_token}&v=5.131'
 
@@ -43,5 +43,13 @@ def save_user_profile(backend, user, response, *args, **kwargs):
 
     if 'about' in data_json:
         user.shopuserprofile.about_me = data_json['about']
+
+    if 'photo_max_orig' in data_json:
+        photo_path = f'users_avatars/{user.pk}.jpeg'
+        photo_full_path = settings.MEDIA_ROOT / photo_path
+        photo_data = requests.get(data_json['photo_max_orig'])
+        with open(photo_full_path , 'wb') as photo_file:
+            photo_file.write(photo_data.content)
+        user.avatar = photo_path
 
     user.save()
