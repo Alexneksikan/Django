@@ -10,7 +10,8 @@ def get_hot_product():
 
 
 def get_same_product(hot_product):
-    products_list = Product.objects.filter(category=hot_product.category).exclude(pk=hot_product.pk).select_related()[:3]
+    products_list = \
+        Product.objects.filter(category=hot_product.category).exclude(pk=hot_product.pk).select_related('category')[:3]
     return products_list
 
 
@@ -25,7 +26,7 @@ def index(request):
 
 def contact(request):
     context = {
-        'title': 'Контакты!'
+        'title': 'Контакты'
 
     }
     return render(request, 'mainapp/contact.html', context)
