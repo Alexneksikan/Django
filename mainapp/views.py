@@ -25,7 +25,7 @@ def index(request):
 
 def contact(request):
     context = {
-        'title': 'Контакты'
+        'title': 'Контакты!'
 
     }
     return render(request, 'mainapp/contact.html', context)
