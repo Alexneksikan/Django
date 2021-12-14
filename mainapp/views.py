@@ -133,7 +133,7 @@ def products(request, pk=None, page=1):
         }
         return render(request, 'mainapp/products_list.html', context=context)
 
-    hot_product = get_hot_product()
+    hot_product = get_hot_product(pk)
     same_products = get_same_product(hot_product)
     context = {
         'links_menu': links_menu,
