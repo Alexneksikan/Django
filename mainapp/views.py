@@ -78,8 +78,8 @@ def get_products_in_category_ordered_by_price(pk):
         return Product.objects.filter(category__pk=pk, is_active=True, category__is_active=True).order_by('price')
 
 
-def get_hot_product():
-    return random.sample(list(get_product()), 1)[0]
+def get_hot_product(pk):
+    return random.sample(list(get_product(pk)), 1)[0]
 
 
 def get_same_product(hot_product):
