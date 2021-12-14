@@ -78,8 +78,8 @@ def get_products_in_category_ordered_by_price(pk):
         return Product.objects.filter(category__pk=pk, is_active=True, category__is_active=True).order_by('price')
 
 
-def get_hot_product(pk):
-    return random.sample(list(get_product(pk)), 1)[0]
+def get_hot_product():
+    return random.sample(list(get_product()), 1)[0]
 
 
 def get_same_product(hot_product):
@@ -133,7 +133,7 @@ def products(request, pk=None, page=1):
         }
         return render(request, 'mainapp/products_list.html', context=context)
 
-    hot_product = get_hot_product(pk)
+    hot_product = get_hot_product()
     same_products = get_same_product(hot_product)
     context = {
         'links_menu': links_menu,
@@ -147,7 +147,7 @@ def products(request, pk=None, page=1):
 def product(request, pk):
     links_menu = get_links_menu()
     context = {
-        'product': get_product(pk),
+        'product': get_object_or_404(Product, pk=pk),
         'links_menu': links_menu
     }
 
