@@ -2,7 +2,7 @@ from django.conf import settings
 from django.core.cache import cache
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, get_object_or_404
-
+from django.views.decorators.cache import cache_page
 from mainapp.models import Product, ProductCategory
 import random
 
@@ -105,6 +105,7 @@ def contact(request):
     return render(request, 'mainapp/contact.html', context)
 
 
+# @cache_page(3600)
 def products(request, pk=None, page=1):
     links_menu = get_links_menu()
     if pk is not None:
