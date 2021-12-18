@@ -5,6 +5,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views.decorators.cache import cache_page
 from mainapp.models import Product, ProductCategory
 import random
+from django.db.models import Q
 
 
 def get_links_menu():
@@ -91,7 +92,9 @@ def get_same_product(hot_product):
 def index(request):
     context = {
         'title': 'Главная',
-        'products': get_products()[:4]
+        'products': get_products().filter(
+            Q(category__name='дом') | Q(category__name='офис')
+        ),
 
     }
     return render(request, 'mainapp/index.html', context)

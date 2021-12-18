@@ -1,0 +1,11 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: Account activation
+From: django@gb.local
+To: merilin@gb.local
+Date: Sat, 18 Dec 2021 15:38:02 -0000
+Message-ID: <163984188284.18808.7109759149965702192@DESKTOP-F5GRGB2>
+
+Your activation url: http://localhost:8000/auth/verify/merilin@gb.local/338ceb7973a71180f777dc59b20c87f453607123/
+-------------------------------------------------------------------------------
